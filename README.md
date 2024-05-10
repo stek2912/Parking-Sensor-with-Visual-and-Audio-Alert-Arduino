@@ -1,1 +1,1 @@
-# parking-sensor-arduino-project
+Parking Sensor Project (Arduino)
