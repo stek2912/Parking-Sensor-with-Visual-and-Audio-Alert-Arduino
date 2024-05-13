@@ -59,22 +59,22 @@ void loop() {
     analogWrite(RED, HIGH);
     digitalWrite(buzzerPin, HIGH);
     
-  }else if (distance > 3) && distance <=8) {
+  }else if (distance > 3 && distance <=8) {
     digitalWrite(GREEN, LOW);
     analogWrite(RED, HIGH); 
-    blink(20);
+    blink(40);
     buzz(50);
     
   } else if (distance > 8 && distance <= 15) {
     digitalWrite(GREEN, LOW);
     analogWrite(RED, HIGH); // Fully turn on the green LED
-    blink(70);
+    blink(100);
     buzz(100);
     
        
   } else if (distance >15 && distance <= 30){
     digitalWrite(RED, LOW);
-    analogWrite(GREEN, 255); // Fully turn on the yellow LED
+    analogWrite(GREEN, HIGH); // Fully turn on the yellow LED
     blink(130);
     buzz(200);
    
@@ -88,8 +88,9 @@ void loop() {
     
   }else {
     digitalWrite(RED, LOW);
-    analogWrite(GREEN, 255); // Fully turn on the yellow LED
-    buzz(500);    
+    analogWrite(GREEN, LOW); // Fully turn on the yellow LED
+    digitalWrite(buzzerPin, LOW);
+     
   }
 
   delay(100);
