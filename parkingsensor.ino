@@ -54,24 +54,23 @@ void loop() {
   Serial.println(distance); // Print distance for debugging
   
 
-  if (distance <= 0) {
+  if (distance <= 3) {
     digitalWrite(GREEN, LOW);
     analogWrite(RED, HIGH);
     digitalWrite(buzzerPin, HIGH);
     
-  }else if (distance <= 5) {
+  }else if (distance > 3) && distance <=8) {
     digitalWrite(GREEN, LOW);
     analogWrite(RED, HIGH); 
     blink(20);
     buzz(50);
     
-  } else if (distance > 5 && distance <= 15) {
+  } else if (distance > 8 && distance <= 15) {
     digitalWrite(GREEN, LOW);
     analogWrite(RED, HIGH); // Fully turn on the green LED
     blink(70);
     buzz(100);
-    lcd.setCursor(0,1);
-    lcd.println("Imate jos prostora!");
+    
        
   } else if (distance >15 && distance <= 30){
     digitalWrite(RED, LOW);
@@ -84,16 +83,13 @@ void loop() {
     digitalWrite(RED, LOW);
     analogWrite(GREEN, 255); // Fully turn on the yellow LED
     blink(200);
-    buzz(350);
+    buzz(300);
    
     
   }else {
     digitalWrite(RED, LOW);
     analogWrite(GREEN, 255); // Fully turn on the yellow LED
-    digitalWrite(buzzerPin, HIGH);
-    lcd.setCursor(0,1);
-    lcd.println("Koliko hoces!");
-    
+    buzz(500);    
   }
 
   delay(100);
