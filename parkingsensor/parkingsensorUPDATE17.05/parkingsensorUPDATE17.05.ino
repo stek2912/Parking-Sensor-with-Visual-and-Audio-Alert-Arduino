@@ -39,6 +39,7 @@ void buzz(int duration) {
 }
 
 void setup() { 
+  
   Serial.begin(9600);
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
@@ -68,6 +69,7 @@ void setup() {
 }
 
 int call_distance() {
+
   digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
   digitalWrite(trigPin, HIGH);
@@ -79,10 +81,12 @@ int call_distance() {
 }
 
 void loop() {  
+
   int distance = call_distance();
   Serial.print("Distance (cm): ");
   Serial.println(distance);
   switchState = digitalRead(switchPin);
+  
   
   if (switchState == LOW) {
     lcd.clear();
@@ -98,6 +102,8 @@ void loop() {
     lcd.setCursor(0,1);
     lcd.print(distance);
     lcd.print(" cm");
+
+
 
     if (distance <= 3) {
       digitalWrite(RED, HIGH); // Turn on RED LED
