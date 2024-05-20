@@ -14,6 +14,8 @@ const int switchPin = 2; // Slide Switch
 #define buzzerPin 8
 //Buzzer define
 
+#define ventilatorPin 7
+
 
 LiquidCrystal_I2C lcd(0x3f,16,2); 
 String message1 = "Projekat:";
@@ -47,6 +49,7 @@ void setup() {
   pinMode(RED, OUTPUT);
   pinMode(buzzerPin, OUTPUT);
   pinMode(switchPin, INPUT);
+  pinMode(ventilatorPin, OUTPUT);
   lcd.init();
   lcd.backlight();
   lcd.display();
@@ -95,6 +98,7 @@ void loop() {
     lcd.setCursor(0, 1);
     lcd.print(message4);
     delay(3000); 
+
   } else {
     lcd.clear();
     lcd.setCursor(0,0);
@@ -108,27 +112,38 @@ void loop() {
     if (distance <= 3) {
       digitalWrite(RED, HIGH); // Turn on RED LED
       digitalWrite(GREEN, LOW); // Turn off GREEN LED
-      digitalWrite(buzzerPin, HIGH); // Turn on Buzzer
+      digitalWrite(buzzerPin, HIGH);
+      digitalWrite(ventilatorPin, HIGH);
+      if (distance > 3){
+
+        delay(3000);
+        digitalWrite(ventilatorPin, LOW);
+      } 
+     // Turn on Buzzer
     } else if (distance > 3 && distance <= 8) {
       digitalWrite(RED, HIGH);
       digitalWrite(GREEN, LOW);
       blink(RED, 40); // Blink the RED LED
-      buzz(50); // Buzz the buzzer
+      buzz(50);
+       digitalWrite(ventilatorPin, LOW); // Buzz the buzzer
     } else if (distance > 8 && distance <= 15) {
       digitalWrite(RED, HIGH);
       digitalWrite(GREEN, LOW);
       blink(RED, 100);
       buzz(100);
+       digitalWrite(ventilatorPin, LOW);
     } else if (distance > 15 && distance <= 30) {
       digitalWrite(GREEN, HIGH); // Turn on GREEN LED
       digitalWrite(RED, LOW); // Turn off RED LED
       blink(GREEN, 130); // Blink the GREEN LED
       buzz(200);
+       digitalWrite(ventilatorPin, LOW);
     } else if (distance > 30 && distance <= 50) {
       digitalWrite(GREEN, HIGH);
       digitalWrite(RED, LOW);
       blink(GREEN, 150);
       buzz(300);
+       digitalWrite(ventilatorPin, LOW);
     } else {
       digitalWrite(GREEN, HIGH); // Turn off GREEN LED
       digitalWrite(RED, LOW); // Turn off RED LED
@@ -136,6 +151,7 @@ void loop() {
       lcd.clear();
       lcd.setCursor(0, 0);
       lcd.print("Vise od 50cm!");
+       digitalWrite(ventilatorPin, LOW);
     }
   }
   delay(100);
