@@ -1,7 +1,7 @@
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h> // includes the LiquidCrystal Library 
 
-const int switchPin = 2; // Slide Switch
+const int switchPin = 2; // Slide Switch (prekidac)
 
 #define trigPin 13
 #define echoPin 12
@@ -23,14 +23,14 @@ String message2 = "Parking senzor";
 String message3 = "Rikverc";
 String message4 = "za aktivaciju!";
 
-int switchState = 0;
+int switchState = 0; 
 
 
-void blink(int pin, int duration) { // Updated blink function
-  digitalWrite(pin, HIGH); 
-  delay(duration);
-  digitalWrite(pin, LOW);
-  delay(duration);
+void blink(int pin, int duration) { // Blink function
+  digitalWrite(pin, HIGH); //Turn on LED
+  delay(duration); // LED ON for the specified duration
+  digitalWrite(pin, LOW); //Turn off LED
+  delay(duration); // LED OFF for the specified duration
 }
 
 void buzz(int duration) {
@@ -108,18 +108,14 @@ void loop() {
     lcd.print(" cm");
 
 
-
+ // odavde ide provera distance
     if (distance <= 3) {
       digitalWrite(RED, HIGH); // Turn on RED LED
       digitalWrite(GREEN, LOW); // Turn off GREEN LED
       digitalWrite(buzzerPin, HIGH);
       digitalWrite(ventilatorPin, HIGH);
-      if (distance > 3){
-
-        delay(3000);
-        digitalWrite(ventilatorPin, LOW);
-      } 
-     // Turn on Buzzer
+      
+  
     } else if (distance > 3 && distance <= 8) {
       digitalWrite(RED, HIGH);
       digitalWrite(GREEN, LOW);
@@ -154,5 +150,5 @@ void loop() {
        digitalWrite(ventilatorPin, LOW);
     }
   }
-  delay(100);
+  delay(100); // ovaj delay mora postojati u izvrsavanju
 }
