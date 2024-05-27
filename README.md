@@ -1,4 +1,4 @@
-Parking Sensor Project (Arduino)
+Object Sensor Project (Arduino) // Arduino multitasking with "milis()" function.
 
 All the Necessary Components:
 
@@ -12,5 +12,5 @@ All the Necessary Components:
 8. 16x2 LCD Display(I2C)
 9. Slide Switch(3 pins)
 10. 12v DC Fan
-11. Relay
+11. 5V Relay
 
