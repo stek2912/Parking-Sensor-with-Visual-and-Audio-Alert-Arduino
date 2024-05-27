@@ -11,4 +11,6 @@ All the Necessary Components:
 7. Piezo Buzzer
 8. 16x2 LCD Display(I2C)
 9. Slide Switch(3 pins)
+10. 12v DC Fan
+11. Relay
 
